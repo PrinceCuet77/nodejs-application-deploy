@@ -16,11 +16,11 @@ jobs:
       - name: Deploy Via SSH
         uses: appleboy/ssh-action@v0.1.5
         with:
-          host: ${{ secrets.EC2_HOST }}
+          host: ${{ secrets.SSH_HOST }}
           username: ubuntu
-          key: ${{ secrets.EC2_KEY }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
             cd /home/ubuntu/nodejs-application-deploy
             git pull origin main
-            docker-compose down
-            docker-compose up -d --build
+            docker compose down
+            docker compose up -d --build
